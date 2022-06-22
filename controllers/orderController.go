@@ -111,7 +111,7 @@ func UpdateOrder() gin.HandlerFunc {
 				c.JSON(http.StatusInternalServerError, gin.H{"error": MSG})
 				return
 			}
-			updateObj = append(updateObj, bson.E{"table_id", order.Table_id})
+			updateObj = append(updateObj, bson.E{Key: "table_id", Value: order.Table_id})
 			order.Updated_at, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
 			updateObj = append(updateObj, bson.E{"updated_at", order.Updated_at})
 			upsert := true
